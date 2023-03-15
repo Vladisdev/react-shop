@@ -1,0 +1,146 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: 'Inter', system-ui;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	background-color: #e7f6ff;
+}
+
+.wrapper {
+	background: #ffffff;
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+	border-radius: 20px;
+	max-width: 1080px;
+	margin: 0 auto;
+	margin-top: 65px;
+
+	header {
+		padding: 43px 63px 44px 45px;
+		border-bottom: 1px solid #eaeaea;
+
+		.headerLeft {
+			.headerInfo {
+				h3 {
+					font-weight: 700;
+					font-size: 20px;
+					line-height: 24px;
+					color: #000000;
+				}
+
+				p {
+					font-weight: 400;
+					font-size: 14px;
+					color: #9d9d9d;
+				}
+			}
+		}
+
+		.headerRight {
+			img {
+				cursor: pointer;
+
+				&.favorite,
+				&.user {
+					margin-top: 8px;
+				}
+			}
+
+			span {
+				font-weight: 600;
+				font-size: 14px;
+				color: #5c5c5c;
+			}
+		}
+	}
+
+	.content {
+		padding-top: 39px;
+		padding-bottom: 22px;
+
+		.container {
+			max-width: 960px;
+			margin: 0 auto;
+
+			.cards {
+				display: grid;
+				grid-template-columns: repeat(4, 210px);
+				grid-column-gap: 40px;
+				grid-row-gap: 40px;
+
+				.card {
+					padding: 30px;
+					border: 1px solid #f3f3f3;
+					border-radius: 40px;
+
+					transition: 0.2s all ease-in-out;
+
+					&__image {
+						margin: 0 auto;
+						width: 133px;
+						height: 112px;
+
+						img {
+							width: 100%;
+							height: 100%;
+						}
+					}
+
+					&__info {
+						&--price {
+							span:first-child {
+								font-weight: 500;
+								font-size: 11px;
+								line-height: 13px;
+								text-transform: uppercase;
+								color: #bdbdbd;
+							}
+
+							span:last-child {
+								font-weight: 700;
+								font-size: 14px;
+								color: #000000;
+							}
+						}
+					}
+
+					&__title {
+						font-size: 14px;
+						line-height: 17px;
+						color: #000000;
+					}
+
+					&__button {
+						cursor: pointer;
+						width: 32px;
+						height: 32px;
+						border: 1px solid #f2f2f2;
+						border-radius: 8px;
+						background-color: #fff;
+
+						display: flex;
+						justify-content: center;
+						align-items: center;
+
+						transition: 0.2s all ease-in-out;
+
+						&:hover {
+							background-color: #131313;
+						}
+					}
+
+					&:hover {
+						box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+					}
+				}
+			}
+		}
+	}
+}
