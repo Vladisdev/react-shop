@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Inter', system-ui;
 }
 
 body {
@@ -69,6 +70,44 @@ body {
 			max-width: 960px;
 			margin: 0 auto;
 
+			.content__header {
+				h1 {
+					font-weight: 700;
+					font-size: 32px;
+					color: #000000;
+				}
+
+				.search {
+					margin: 0;
+					width: 250px;
+
+					input {
+						border: 1px solid #f3f3f3;
+						border-radius: 10px;
+
+						width: 100%;
+						padding: 14px 46px;
+
+						color: #7e7e7e;
+						font-size: 14px;
+
+						&::placeholder {
+							font-size: 14px;
+							color: #c4c4c4;
+						}
+
+						&:focus {
+							outline-color: #dddddd;
+						}
+					}
+
+					img {
+						top: 15px;
+						left: 18px;
+					}
+				}
+			}
+
 			.cards {
 				display: grid;
 				grid-template-columns: repeat(4, 210px);
@@ -76,11 +115,21 @@ body {
 				grid-row-gap: 40px;
 
 				.card {
-					padding: 30px;
+					padding: 29px;
 					border: 1px solid #f3f3f3;
 					border-radius: 40px;
 
-					transition: 0.2s all ease-in-out;
+					transition: all 0.2s ease-in-out;
+
+					&__favorite {
+						width: 32px;
+						height: 32px;
+
+						top: 20px;
+						left: 25px;
+
+						cursor: pointer;
+					}
 
 					&__image {
 						margin: 0 auto;
@@ -124,6 +173,9 @@ body {
 						border: 1px solid #f2f2f2;
 						border-radius: 8px;
 						background-color: #fff;
+						background-image: url('../public/img/plus.svg');
+						background-repeat: no-repeat;
+						background-position: center;
 
 						display: flex;
 						justify-content: center;
@@ -137,7 +189,196 @@ body {
 					}
 
 					&:hover {
-						box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+						box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
+						transform: translateY(-5px);
+					}
+				}
+			}
+		}
+	}
+
+	.overlay {
+		position: fixed;
+		top: 0;
+		right: 0;
+
+		width: 100%;
+		height: 100%;
+
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: 1;
+
+		.drawer {
+			display: flex;
+			flex-direction: column;
+
+			position: absolute;
+			right: 0;
+
+			width: 385px;
+			height: 100%;
+
+			padding: 30px;
+
+			background: #ffffff;
+			box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+
+			.drawer__header {
+				display: flex;
+				justify-content: space-between;
+
+				h2 {
+					font-weight: 700;
+					font-size: 24px;
+					color: #000000;
+					margin-bottom: 30px;
+				}
+
+				div {
+					background-image: url('../public/img/cross.svg');
+					background-size: 50%;
+					background-repeat: no-repeat;
+					background-position: center;
+
+					cursor: pointer;
+
+					border-radius: 8px;
+
+					width: 32px;
+					height: 32px;
+				}
+			}
+
+			.cartItems {
+				flex: 1 1;
+				overflow: auto;
+
+				.cartItem {
+					padding: 20px;
+					margin-bottom: 20px;
+
+					border: 1px solid #f3f3f3;
+					border-radius: 20px;
+
+					&__image {
+						width: 70px;
+						height: 70px;
+
+						img {
+							width: 100%;
+						}
+					}
+
+					&__info {
+						max-width: 162px;
+
+						margin-right: 12px;
+						margin-left: 21px;
+
+						span:first-child {
+							font-size: 14px;
+							line-height: 17px;
+							color: #000000;
+							margin-bottom: 8px;
+						}
+
+						span:last-child {
+							font-weight: 700;
+							font-size: 14px;
+							color: #000000;
+						}
+					}
+
+					&__action {
+						cursor: pointer;
+
+						border: 1px solid #dbdbdb;
+						border-radius: 8px;
+
+						min-width: 32px;
+						min-height: 32px;
+
+						background-image: url('../public/img/cross.svg');
+						background-repeat: no-repeat;
+						background-position: center;
+
+						transition: 0.2s all ease-in-out;
+
+						&:hover {
+							background-color: #131313;
+						}
+					}
+				}
+			}
+
+			.total {
+				.count {
+					div:first-child {
+						font-size: 16px;
+						color: #000000;
+					}
+
+					div:nth-child(2) {
+						flex: 1;
+						margin: 0 8px 3px;
+						border-bottom: 1px dashed #dfdfdf;
+					}
+
+					div:last-child {
+						font-weight: 600;
+						font-size: 16px;
+						color: #000000;
+					}
+				}
+
+				&__sum {
+					justify-content: space-between;
+					margin-bottom: 19px;
+				}
+
+				&__tax {
+					justify-content: space-between;
+					margin-bottom: 24px;
+				}
+
+				&__action {
+					position: relative;
+
+					.btn {
+						cursor: pointer;
+						border: 0;
+
+						width: 100%;
+						height: 55px;
+
+						background: #9dd558;
+						border-radius: 18px;
+
+						font-weight: 600;
+						font-size: 16px;
+						color: #ffffff;
+
+						transition: background 0.1s ease-in-out;
+
+						svg {
+							position: absolute;
+							right: 33px;
+							top: 22px;
+
+							transition: transform 0.15s ease-in-out;
+						}
+
+						&:hover {
+							background: darken(#9dd558, 10%);
+
+							svg {
+								transform: translateX(5px);
+							}
+						}
+
+						&:active {
+							background: lighten(#9dd558, 5%);
+						}
 					}
 				}
 			}
