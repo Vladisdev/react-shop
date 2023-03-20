@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
 
-const Header = ({ onOpenCart }) => {
+const Header = ({ openCart }) => {
 	return (
 		<header className={styles.header}>
 			<div className={styles.headerLeft}>
@@ -18,7 +18,7 @@ const Header = ({ onOpenCart }) => {
 			</div>
 			<div className={styles.headerRight}>
 				<div
-					onClick={onOpenCart}
+					onClick={openCart}
 					className='cu-p d-flex align-center'
 				>
 					<img

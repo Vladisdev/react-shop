@@ -1,6 +1,6 @@
 import styles from './Drawer.module.scss';
 
-const Drawer = ({ onCloseCart }) => {
+const Drawer = ({ closeCart }) => {
 	const countClass = styles.count;
 
 	return (
@@ -10,7 +10,7 @@ const Drawer = ({ onCloseCart }) => {
 					<h2>Корзина</h2>
 					<div
 						className={styles.close}
-						onClick={onCloseCart}
+						onClick={closeCart}
 					/>
 				</div>
 				<div className={styles.cartItems}>

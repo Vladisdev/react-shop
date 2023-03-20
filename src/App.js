@@ -9,15 +9,15 @@ function App() {
 
 	return (
 		<div className='wrapper'>
-			{cartOpened ? (
+			{cartOpened && (
 				<Drawer
-					onCloseCart={() => {
+					closeCart={() => {
 						setCartOpened(false);
 					}}
 				/>
-			) : null}
+			)}
 			<Header
-				onOpenCart={() => {
+				openCart={() => {
 					setCartOpened(true);
 				}}
 			/>
