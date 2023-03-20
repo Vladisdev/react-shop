@@ -1,58 +1,62 @@
+import styles from './Drawer.module.scss';
+
 const Drawer = () => {
+	const countClass = styles.count;
+
 	return (
 		<div
 			style={{ display: 'none' }}
-			className='overlay'
+			className={styles.overlay}
 		>
-			<div className='drawer'>
-				<div className='drawer__header'>
+			<div className={styles.drawer}>
+				<div className={styles.header}>
 					<h2>Корзина</h2>
-					<div className='close' />
+					<div className={styles.close} />
 				</div>
-				<div className='cartItems'>
-					<div className='cartItem d-flex align-center'>
-						<div className='cartItem__image'>
+				<div className={styles.cartItems}>
+					<div className={styles.cartItem}>
+						<div className={styles.image}>
 							<img
 								src='/img/sneakers/2.jpg'
 								alt='Sneakers'
 							/>
 						</div>
-						<div className='cartItem__info d-flex flex-column'>
+						<div className={styles.info}>
 							<span>Мужские Кроссовки Nike Air Max 270</span>
 							<span>12 999 руб.</span>
 						</div>
-						<div className='cartItem__action'></div>
+						<div className={styles.action}></div>
 					</div>
 
-					<div className='cartItem d-flex align-center'>
-						<div className='cartItem__image'>
+					<div className={styles.cartItem}>
+						<div className={styles.image}>
 							<img
 								src='/img/sneakers/2.jpg'
 								alt='Sneakers'
 							/>
 						</div>
-						<div className='cartItem__info d-flex flex-column'>
+						<div className={styles.info}>
 							<span>Мужские Кроссовки Nike Air Max 270</span>
 							<span>12 999 руб.</span>
 						</div>
-						<div className='cartItem__action'></div>
+						<div className={styles.action}></div>
 					</div>
 				</div>
-				<div className='total'>
-					<div className='count total__sum d-flex'>
+				<div className={styles.total}>
+					<div className={countClass + ' ' + styles.sum}>
 						<div>Итого:</div>
 						<div></div>
 						<div>21 498 руб.</div>
 					</div>
-					<div className='count total__tax d-flex'>
+					<div className={countClass + ' ' + styles.tax}>
 						<div>Налог 5%:</div>
 						<div></div>
 						<div>1074 руб.</div>
 					</div>
-					<div className='total__action'>
+					<div className={styles.action}>
 						<button
 							type='button'
-							className='btn'
+							className={styles.btn}
 						>
 							Оформить заказ
 							<svg

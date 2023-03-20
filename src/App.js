@@ -1,6 +1,7 @@
 import Drawer from './components/Drawer';
 import Header from './components/layout/Header';
 import ProductCard from './components/ProductCard';
+import { products } from './data/products';
 
 function App() {
 	return (
@@ -24,13 +25,14 @@ function App() {
 						</div>
 					</div>
 					<div className='cards mt-30'>
-						<ProductCard />
-						<ProductCard />
-						<ProductCard />
-						<ProductCard />
-						<ProductCard />
-						<ProductCard />
-						<ProductCard />
+						{products.map((product, index) => (
+							<ProductCard
+								title={product.title}
+								price={product.price}
+								imageUrl={product.imageUrl}
+								key={index}
+							/>
+						))}
 					</div>
 				</div>
 			</section>
