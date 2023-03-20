@@ -1,17 +1,17 @@
 import styles from './Drawer.module.scss';
 
-const Drawer = () => {
+const Drawer = ({ onCloseCart }) => {
 	const countClass = styles.count;
 
 	return (
-		<div
-			style={{ display: 'none' }}
-			className={styles.overlay}
-		>
+		<div className={styles.overlay}>
 			<div className={styles.drawer}>
 				<div className={styles.header}>
 					<h2>Корзина</h2>
-					<div className={styles.close} />
+					<div
+						className={styles.close}
+						onClick={onCloseCart}
+					/>
 				</div>
 				<div className={styles.cartItems}>
 					<div className={styles.cartItem}>

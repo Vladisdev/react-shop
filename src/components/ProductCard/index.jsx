@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import styles from './ProductCard.module.scss';
 
-console.log(styles);
-
 const ProductCard = ({ title, price, imageUrl }) => {
+	const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+	const addToCart = () => {
+		setIsAddedToCart(!isAddedToCart);
+	};
+
 	return (
 		<div className={styles.card}>
 			<div className={styles.favorite}>
@@ -43,8 +48,14 @@ const ProductCard = ({ title, price, imageUrl }) => {
 					<span>Цена:</span>
 					<span>{price} руб.</span>
 				</div>
-				<div>
-					<button className={styles.button} />
+				<div
+					className={styles.btn}
+					onClick={addToCart}
+				>
+					<img
+						src={isAddedToCart ? '/img/check.svg' : '/img/plus.svg'}
+						alt='Plus'
+					/>
 				</div>
 			</div>
 		</div>

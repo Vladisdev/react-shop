@@ -23,45 +23,6 @@ body {
 	margin: 0 auto;
 	margin-top: 65px;
 
-	header {
-		padding: 43px 63px 44px 45px;
-		border-bottom: 1px solid #eaeaea;
-
-		.headerLeft {
-			.headerInfo {
-				h3 {
-					font-weight: 700;
-					font-size: 20px;
-					line-height: 24px;
-					color: #000000;
-				}
-
-				p {
-					font-weight: 400;
-					font-size: 14px;
-					color: #9d9d9d;
-				}
-			}
-		}
-
-		.headerRight {
-			img {
-				cursor: pointer;
-
-				&.favorite,
-				&.user {
-					margin-top: 8px;
-				}
-			}
-
-			span {
-				font-weight: 600;
-				font-size: 14px;
-				color: #5c5c5c;
-			}
-		}
-	}
-
 	.content {
 		padding-top: 39px;
 		padding-bottom: 22px;

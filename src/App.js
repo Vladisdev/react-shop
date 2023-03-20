@@ -1,13 +1,26 @@
+import { useState } from 'react';
 import Drawer from './components/Drawer';
 import Header from './components/layout/Header';
 import ProductCard from './components/ProductCard';
 import { products } from './data/products';
 
 function App() {
+	const [cartOpened, setCartOpened] = useState(false);
+
 	return (
 		<div className='wrapper'>
-			<Drawer />
-			<Header />
+			{cartOpened ? (
+				<Drawer
+					onCloseCart={() => {
+						setCartOpened(false);
+					}}
+				/>
+			) : null}
+			<Header
+				onOpenCart={() => {
+					setCartOpened(true);
+				}}
+			/>
 			<section className='content'>
 				<div className='container'>
 					<div className='content__header d-flex justify-between'>

@@ -1,21 +1,26 @@
-const Header = () => {
+import styles from './Header.module.scss';
+
+const Header = ({ onOpenCart }) => {
 	return (
-		<header className='d-flex justify-between align-center'>
-			<div className='headerLeft d-flex align-center'>
+		<header className={styles.header}>
+			<div className={styles.headerLeft}>
 				<img
-					className='mr-15'
+					className={styles.img}
 					width={40}
 					height={40}
 					src='/img/logo.png'
 					alt='Logo'
 				/>
-				<div className='headerInfo'>
-					<h3 className='text-uppercase'>React Sneakers</h3>
+				<div className={styles.headerInfo}>
+					<h3>React Sneakers</h3>
 					<p>Магазин лучших кроссовок</p>
 				</div>
 			</div>
-			<div className='headerRight d-flex align-center'>
-				<div className='d-flex align-center'>
+			<div className={styles.headerRight}>
+				<div
+					onClick={onOpenCart}
+					className='cu-p d-flex align-center'
+				>
 					<img
 						width={18}
 						height={18}
@@ -23,7 +28,7 @@ const Header = () => {
 						src='/img/cart.svg'
 						alt='Cart'
 					/>
-					<span className='mr-30'>1205 руб.</span>
+					<span className='mr-30'>0 руб.</span>
 				</div>
 				<div>
 					<img
