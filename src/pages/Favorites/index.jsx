@@ -42,9 +42,9 @@ const Favorites = ({ products, addToFavorites, addToCart }) => {
 						{products.map(item => (
 							<ProductCard
 								key={item.id}
-								isFavorite={true}
 								addToFavorites={addToFavorites}
 								addToCart={addToCart}
+								favorite
 								{...item}
 							/>
 						))}

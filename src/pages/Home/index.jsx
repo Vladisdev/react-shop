@@ -7,7 +7,24 @@ const Home = ({
 	clearSearchInput,
 	addToCart,
 	addToFavorites,
+	isLoading,
 }) => {
+	function render() {
+		const filteredItems = products.filter(item => {
+			return item?.title.toLowerCase().includes(searchValue.toLowerCase());
+		});
+
+		return (isLoading ? [...Array(10)] : filteredItems).map((item, index) => (
+			<ProductCard
+				key={index}
+				addToCart={addToCart}
+				addToFavorites={addToFavorites}
+				loading={isLoading}
+				{...item}
+			/>
+		));
+	}
+
 	return (
 		<>
 			<div className='content__header d-flex justify-between'>
@@ -36,20 +53,7 @@ const Home = ({
 					)}
 				</div>
 			</div>
-			<div className='cards mt-30'>
-				{products
-					.filter(item => {
-						return item.title.toLowerCase().includes(searchValue.toLowerCase());
-					})
-					.map(item => (
-						<ProductCard
-							key={item.id}
-							addToCart={addToCart}
-							addToFavorites={addToFavorites}
-							{...item}
-						/>
-					))}
-			</div>
+			<div className='cards mt-30'>{render()}</div>
 		</>
 	);
 };
