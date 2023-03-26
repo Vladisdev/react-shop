@@ -12,6 +12,7 @@ function App() {
 	const [favoriteItems, setFavoriteItems] = useState([]);
 	const [products, setProducts] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
+	const [isLoading, setIsLoading] = useState(true);
 	const cartItemsPrices = [];
 
 	cartItems.forEach(cartItem => {
@@ -21,8 +22,19 @@ function App() {
 	const totalPrice = cartItemsPrices.reduce((acc, item) => (acc += item), 0);
 
 	useEffect(() => {
-		setProducts(items);
+		setTimeout(() => {
+			setProducts(items);
+			setIsLoading(false);
+		}, 1500);
 	}, []);
+
+	useEffect(() => {
+		localStorage.setItem('favorites', JSON.stringify(favoriteItems));
+	}, [favoriteItems]);
+
+	useEffect(() => {
+		localStorage.setItem('cart', JSON.stringify(cartItems));
+	}, [cartItems]);
 
 	const addToCart = item => {
 		const cartItemsIds = cartItems.map(item => {
@@ -80,7 +92,6 @@ function App() {
 				}}
 				total={totalPrice}
 			/>
-
 			<section className='content'>
 				<div className='container'>
 					<Routes>
@@ -89,11 +100,13 @@ function App() {
 							element={
 								<Home
 									products={products}
+									cartItems={cartItems}
 									searchValue={searchValue}
 									handleChangeSearch={handleChangeSearch}
 									clearSearchInput={clearSearchInput}
 									addToCart={addToCart}
 									addToFavorites={addToFavorites}
+									isLoading={isLoading}
 								/>
 							}
 						/>

@@ -16,8 +16,11 @@ const Drawer = ({ closeCart, items = [], removeFromCart, total }) => {
 				<div className={styles.cartItems}>
 					{items.length > 0 ? (
 						<div className={styles.cartNotEmpty}>
-							{items.map((item, index) => (
-								<div className={styles.cartItem}>
+							{items.map(item => (
+								<div
+									key={item.id}
+									className={styles.cartItem}
+								>
 									<div className={styles.image}>
 										<img
 											src={item.imageUrl}

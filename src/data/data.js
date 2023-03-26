@@ -14,7 +14,7 @@ export const items = [
 	{
 		id: 3,
 		imageUrl: '/img/sneakers/3.jpg',
-		title: 'Мужские Кроссовки Nike Blazer Mid Suede',
+		title: 'Мужские Кроссовки Nike Blazer Mid Suede 2',
 		price: 8499,
 	},
 	{
