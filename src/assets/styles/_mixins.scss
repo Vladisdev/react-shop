@@ -1,0 +1,22 @@
+@mixin btn-style {
+	background: #9dd558;
+
+	border-radius: 18px;
+	border: 0;
+
+	font-weight: 600;
+	font-size: 16px;
+	color: #ffffff;
+
+	cursor: pointer;
+
+	transition: background 0.1s ease-in-out;
+
+	&:hover {
+		background: darken(#9dd558, 10%);
+	}
+
+	&:active {
+		background: lighten(#9dd558, 5%);
+	}
+}

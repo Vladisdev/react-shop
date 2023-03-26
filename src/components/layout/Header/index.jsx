@@ -1,21 +1,24 @@
+import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
-const Header = ({ openCart }) => {
+const Header = ({ openCart, total }) => {
 	return (
 		<header className={styles.header}>
-			<div className={styles.headerLeft}>
-				<img
-					className={styles.img}
-					width={40}
-					height={40}
-					src='/img/logo.png'
-					alt='Logo'
-				/>
-				<div className={styles.headerInfo}>
-					<h3>React Sneakers</h3>
-					<p>Магазин лучших кроссовок</p>
+			<Link to={'/'}>
+				<div className={styles.headerLeft}>
+					<img
+						className={styles.img}
+						width={40}
+						height={40}
+						src='/img/logo.png'
+						alt='Logo'
+					/>
+					<div className={styles.headerInfo}>
+						<h3>React Sneakers</h3>
+						<p>Магазин лучших кроссовок</p>
+					</div>
 				</div>
-			</div>
+			</Link>
 			<div className={styles.headerRight}>
 				<div
 					onClick={openCart}
@@ -28,16 +31,18 @@ const Header = ({ openCart }) => {
 						src='/img/cart.svg'
 						alt='Cart'
 					/>
-					<span className='mr-30'>0 руб.</span>
+					<span className='mr-30'>{total} руб.</span>
 				</div>
 				<div>
-					<img
-						width={20}
-						height={20}
-						src='/img/favorite.svg'
-						alt='Favorite'
-						className='favorite mr-30'
-					/>
+					<Link to={'/favorites'}>
+						<img
+							width={20}
+							height={20}
+							src='/img/favorite.svg'
+							alt='Favorite'
+							className='favorite mr-30'
+						/>
+					</Link>
 				</div>
 				<div>
 					<img

@@ -1,3 +1,5 @@
+@import '../../assets/styles/_mixins.scss';
+
 .overlay {
 	position: fixed;
 	top: 0;
@@ -51,73 +53,141 @@
 		}
 
 		.cartItems {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
 			flex: 1 1;
 			overflow: auto;
 
-			.cartItem {
+			.cartEmpty {
 				display: flex;
+				flex: 1 1;
+				flex-direction: column;
 				align-items: center;
+				justify-content: center;
 
-				padding: 20px;
-				margin-bottom: 20px;
-
-				border: 1px solid #f3f3f3;
-				border-radius: 20px;
-
-				.image {
-					width: 70px;
-					height: 70px;
-
-					img {
-						width: 100%;
-					}
+				.emptyImage {
+					margin-bottom: 21px;
 				}
 
-				.info {
+				.emptyTitle {
+					font-weight: 600;
+					font-size: 22px;
+					color: #000000;
+
+					margin-bottom: 9px;
+				}
+
+				.emptyText {
+					font-size: 16px;
+					line-height: 24px;
+					color: #000000;
+					opacity: 0.4;
+					text-align: center;
+
+					margin-bottom: 40px;
+				}
+
+				.emptyAction {
+					position: relative;
+
+					.backBtn {
+						@include btn-style;
+
+						padding-left: 27px;
+						width: 245px;
+						height: 55px;
+
+						svg {
+							position: absolute;
+
+							left: 31px;
+							top: 21px;
+
+							transform: rotate(180deg);
+							transition: all 0.15s ease-in-out;
+						}
+
+						&:hover {
+							svg {
+								transform: translateX(-5px) rotate(-180deg);
+							}
+						}
+					}
+				}
+			}
+
+			.cartNotEmpty {
+				display: flex;
+				flex: 1 1;
+				flex-direction: column;
+				position: relative;
+
+				.cartItem {
 					display: flex;
-					flex-direction: column;
+					align-items: center;
 
-					max-width: 162px;
+					padding: 20px;
+					margin-bottom: 20px;
 
-					margin-right: 12px;
-					margin-left: 21px;
+					border: 1px solid #f3f3f3;
+					border-radius: 20px;
 
-					span:first-child {
-						font-size: 14px;
-						line-height: 17px;
-						color: #000000;
-						margin-bottom: 8px;
+					.image {
+						width: 70px;
+						height: 70px;
+
+						img {
+							width: 100%;
+						}
 					}
 
-					span:last-child {
-						font-weight: 700;
-						font-size: 14px;
-						color: #000000;
+					.info {
+						display: flex;
+						flex-direction: column;
+
+						max-width: 162px;
+
+						margin-right: 12px;
+						margin-left: 21px;
+
+						span:first-child {
+							font-size: 14px;
+							line-height: 17px;
+							color: #000000;
+							margin-bottom: 8px;
+						}
+
+						span:last-child {
+							font-weight: 700;
+							font-size: 14px;
+							color: #000000;
+						}
 					}
-				}
 
-				.action {
-					cursor: pointer;
+					.action {
+						cursor: pointer;
 
-					border: 1px solid #dbdbdb;
-					border-radius: 8px;
+						border: 1px solid #dbdbdb;
+						border-radius: 8px;
 
-					min-width: 32px;
-					min-height: 32px;
+						min-width: 32px;
+						min-height: 32px;
 
-					background-image: url('../../../public/img/cross.svg');
-					background-repeat: no-repeat;
-					background-position: center;
+						background-image: url('../../../public/img/cross.svg');
+						background-repeat: no-repeat;
+						background-position: center;
 
-					transition: 0.2s all ease-in-out;
+						transition: 0.2s all ease-in-out;
 
-					&:hover {
-						background-color: #131313;
+						&:hover {
+							background-color: #131313;
+						}
 					}
 				}
 			}
 		}
-
 		.total {
 			.count div:first-child {
 				font-size: 16px;
@@ -151,40 +221,24 @@
 			.action {
 				position: relative;
 
-				.btn {
-					cursor: pointer;
-					border: 0;
+				.orderBtn {
+					@include btn-style;
 
 					width: 100%;
 					height: 55px;
-
-					background: #9dd558;
-					border-radius: 18px;
-
-					font-weight: 600;
-					font-size: 16px;
-					color: #ffffff;
-
-					transition: background 0.1s ease-in-out;
 
 					svg {
 						position: absolute;
 						right: 33px;
 						top: 22px;
 
-						transition: transform 0.15s ease-in-out;
+						transition: all 0.15s ease-in-out;
 					}
 
 					&:hover {
-						background: darken(#9dd558, 10%);
-
 						svg {
 							transform: translateX(5px);
 						}
-					}
-
-					&:active {
-						background: lighten(#9dd558, 5%);
 					}
 				}
 			}
