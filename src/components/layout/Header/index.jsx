@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AppContext } from '../../../App';
 import styles from './Header.module.scss';
 
-const Header = ({ openCart, total }) => {
+const Header = () => {
+	const { totalPrice, setCartOpened } = useContext(AppContext);
+
 	return (
 		<header className={styles.header}>
 			<Link to={'/'}>
@@ -21,7 +25,7 @@ const Header = ({ openCart, total }) => {
 			</Link>
 			<div className={styles.headerRight}>
 				<div
-					onClick={openCart}
+					onClick={() => setCartOpened(true)}
 					className='cu-p d-flex align-center'
 				>
 					<img
@@ -31,7 +35,7 @@ const Header = ({ openCart, total }) => {
 						src='/img/cart.svg'
 						alt='Cart'
 					/>
-					<span className='mr-30'>{total} руб.</span>
+					<span className='mr-30'>{totalPrice} руб.</span>
 				</div>
 				<div>
 					<Link to={'/favorites'}>
@@ -45,13 +49,15 @@ const Header = ({ openCart, total }) => {
 					</Link>
 				</div>
 				<div>
-					<img
-						width={20}
-						height={20}
-						className='user'
-						src='/img/user.svg'
-						alt='User'
-					/>
+					<Link to={'profile'}>
+						<img
+							width={20}
+							height={20}
+							className='user'
+							src='/img/user.svg'
+							alt='User'
+						/>
+					</Link>
 				</div>
 			</div>
 		</header>

@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import Header from './components/layout/Header';
 import { items } from './data/data';
 import Favorites from './pages/Favorites';
 import Home from './pages/Home';
+import Orders from './pages/Orders';
+
+export const AppContext = createContext({});
 
 function App() {
 	const [cartOpened, setCartOpened] = useState(false);
@@ -13,28 +16,20 @@ function App() {
 	const [products, setProducts] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 	const [isLoading, setIsLoading] = useState(true);
-	const cartItemsPrices = [];
+	const [orders, setOrders] = useState([]);
+	const total = cartItems.reduce((acc, item) => (acc += item.price), 0);
+	const [totalPrice, setTotalPrice] = useState(total);
 
-	cartItems.forEach(cartItem => {
-		cartItemsPrices.push(cartItem.price);
-	});
-
-	const totalPrice = cartItemsPrices.reduce((acc, item) => (acc += item), 0);
+	useEffect(() => {
+		setTotalPrice(total);
+	}, [total]);
 
 	useEffect(() => {
 		setTimeout(() => {
 			setProducts(items);
 			setIsLoading(false);
-		}, 1500);
+		}, 500);
 	}, []);
-
-	useEffect(() => {
-		localStorage.setItem('favorites', JSON.stringify(favoriteItems));
-	}, [favoriteItems]);
-
-	useEffect(() => {
-		localStorage.setItem('cart', JSON.stringify(cartItems));
-	}, [cartItems]);
 
 	const addToCart = item => {
 		const cartItemsIds = cartItems.map(item => {
@@ -62,8 +57,8 @@ function App() {
 		setFavoriteItems(prev => [...prev, item]);
 	};
 
-	const removeFromCart = imageUrl => {
-		setCartItems(prev => prev.filter(item => item.imageUrl !== imageUrl));
+	const removeFromCart = id => {
+		setCartItems(prev => prev.filter(item => item.id !== id));
 	};
 
 	const handleChangeSearch = event => {
@@ -74,56 +69,81 @@ function App() {
 		setSearchValue('');
 	};
 
+	const isItemInCart = id => {
+		if (typeof id !== 'undefined' && cartItems.length > 0) {
+			return cartItems.some(item => item.id === id);
+		}
+	};
+
+	const isItemInFavorites = id => {
+		if (typeof id !== 'undefined' && favoriteItems.length > 0) {
+			return favoriteItems.some(item => item.id === id);
+		}
+	};
+
 	return (
-		<div className='wrapper'>
-			{cartOpened && (
+		<AppContext.Provider
+			value={{
+				products,
+				cartItems,
+				favoriteItems,
+				totalPrice,
+				orders,
+				isLoading,
+				isItemInCart,
+				isItemInFavorites,
+				setCartOpened,
+				setCartItems,
+				setOrders,
+			}}
+		>
+			<div className='wrapper'>
 				<Drawer
 					items={cartItems}
-					closeCart={() => {
-						setCartOpened(false);
-					}}
 					removeFromCart={removeFromCart}
-					total={totalPrice}
+					opened={cartOpened}
 				/>
-			)}
-			<Header
-				openCart={() => {
-					setCartOpened(true);
-				}}
-				total={totalPrice}
-			/>
-			<section className='content'>
-				<div className='container'>
-					<Routes>
-						<Route
-							path={'/'}
-							element={
-								<Home
-									products={products}
-									cartItems={cartItems}
-									searchValue={searchValue}
-									handleChangeSearch={handleChangeSearch}
-									clearSearchInput={clearSearchInput}
-									addToCart={addToCart}
-									addToFavorites={addToFavorites}
-									isLoading={isLoading}
-								/>
-							}
-						/>
-						<Route
-							path={'favorites'}
-							element={
-								<Favorites
-									products={favoriteItems}
-									addToFavorites={addToFavorites}
-									addToCart={addToCart}
-								/>
-							}
-						/>
-					</Routes>
-				</div>
-			</section>
-		</div>
+				<Header />
+				<section className='content'>
+					<div className='container'>
+						<Routes>
+							<Route
+								path={'/'}
+								element={
+									<Home
+										products={products}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										handleChangeSearch={handleChangeSearch}
+										clearSearchInput={clearSearchInput}
+										addToCart={addToCart}
+										addToFavorites={addToFavorites}
+									/>
+								}
+							/>
+							<Route
+								path={'favorites'}
+								element={
+									<Favorites
+										addToFavorites={addToFavorites}
+										addToCart={addToCart}
+									/>
+								}
+							/>
+							<Route
+								path={'profile'}
+								element={
+									<Orders
+										addToFavorites={addToFavorites}
+										addToCart={addToCart}
+									/>
+								}
+							/>
+						</Routes>
+					</div>
+				</section>
+			</div>
+		</AppContext.Provider>
 	);
 }
 

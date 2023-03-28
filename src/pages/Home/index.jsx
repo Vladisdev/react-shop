@@ -1,25 +1,26 @@
+import { useContext } from 'react';
+import { AppContext } from '../../App';
 import ProductCard from '../../components/ProductCard';
 
 const Home = ({
-	products,
 	searchValue,
 	handleChangeSearch,
 	clearSearchInput,
 	addToCart,
 	addToFavorites,
-	isLoading,
 }) => {
+	const { products, isLoading } = useContext(AppContext);
+
 	function render() {
 		const filteredItems = products.filter(item => {
 			return item?.title.toLowerCase().includes(searchValue.toLowerCase());
 		});
 
-		return (isLoading ? [...Array(10)] : filteredItems).map((item, index) => (
+		return (isLoading ? [...Array(8)] : filteredItems).map((item, index) => (
 			<ProductCard
 				key={index}
 				addToCart={addToCart}
 				addToFavorites={addToFavorites}
-				loading={isLoading}
 				{...item}
 			/>
 		));

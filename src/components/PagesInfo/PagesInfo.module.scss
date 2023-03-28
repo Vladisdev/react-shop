@@ -1,0 +1,66 @@
+@import '../../assets/styles/mixins';
+
+.infoBlock {
+	height: 60vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	.emoji {
+		margin-bottom: 25px;
+	}
+
+	.title {
+		margin-bottom: 11px;
+		font-weight: 600;
+		font-size: 24px;
+		line-height: 29px;
+		color: #000000;
+	}
+
+	.text {
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 150%;
+		text-align: center;
+
+		max-width: 283px;
+
+		color: #000000;
+
+		opacity: 0.4;
+
+		margin-bottom: 70px;
+	}
+
+	.actionBlock {
+		position: relative;
+		width: 245px;
+		height: 55px;
+
+		.btn {
+			@include btn-style;
+
+			padding-left: 27px;
+			width: 100%;
+			height: 100%;
+
+			svg {
+				position: absolute;
+
+				left: 31px;
+				top: 21px;
+
+				transform: rotate(180deg);
+				transition: all 0.15s ease-in-out;
+			}
+
+			&:hover {
+				svg {
+					transform: translateX(-5px) rotate(-180deg);
+				}
+			}
+		}
+	}
+}

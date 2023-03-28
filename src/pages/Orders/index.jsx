@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import { AppContext } from '../../App';
 import PagesInfo from '../../components/PagesInfo';
 import ProductCard from '../../components/ProductCard';
-import styles from './Favorites.module.scss';
+import styles from './Orders.module.scss';
 
-const Favorites = ({ addToFavorites, addToCart }) => {
-	const { favoriteItems } = useContext(AppContext);
+const Orders = ({ addToFavorites, addToCart }) => {
+	const { orders } = useContext(AppContext);
+	console.log(orders);
 
 	return (
 		<>
-			{favoriteItems.length > 0 ? (
+			{orders.length > 0 ? (
 				<>
 					<div className={styles.contentHeader}>
 						<Link to={'/'}>
@@ -41,28 +42,33 @@ const Favorites = ({ addToFavorites, addToCart }) => {
 								</svg>
 							</div>
 						</Link>
-						<h1>Мои закладки</h1>
+						<h1>Мои заказы</h1>
 					</div>
 					<div className='cards'>
-						{favoriteItems.map(item => (
+						{orders.map(item => (
 							<ProductCard
 								key={item.id}
 								addToFavorites={addToFavorites}
 								addToCart={addToCart}
 								{...item}
+								hideActions
 							/>
 						))}
 					</div>
 				</>
 			) : (
 				<PagesInfo
-					image='./img/emoji-tears.svg'
-					title='Закладок нет :('
-					text={<span>Вы ничего не добавляли в закладки</span>}
+					image='./img/emoji-sad.svg'
+					title='У вас нет заказов'
+					text={
+						<>
+							<span>Нам грустно, ведь вы не оформили ни одного заказа</span>
+						</>
+					}
 				/>
 			)}
 		</>
 	);
 };
 
-export default Favorites;
+export default Orders;

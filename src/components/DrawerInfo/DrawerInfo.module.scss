@@ -1,0 +1,59 @@
+@import '../../assets/styles/mixins';
+
+.infoBlock {
+	display: flex;
+	flex: 1 1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	.infoImage {
+		margin-bottom: 21px;
+	}
+
+	.infoTitle {
+		font-weight: 600;
+		font-size: 22px;
+		color: #000000;
+
+		margin-bottom: 9px;
+	}
+
+	.infoText {
+		font-size: 16px;
+		line-height: 24px;
+		color: #000000;
+		opacity: 0.4;
+		text-align: center;
+
+		margin-bottom: 40px;
+	}
+
+	.infoAction {
+		position: relative;
+
+		.backBtn {
+			@include btn-style;
+
+			padding-left: 27px;
+			width: 245px;
+			height: 55px;
+
+			svg {
+				position: absolute;
+
+				left: 31px;
+				top: 21px;
+
+				transform: rotate(180deg);
+				transition: all 0.15s ease-in-out;
+			}
+
+			&:hover {
+				svg {
+					transform: translateX(-5px) rotate(-180deg);
+				}
+			}
+		}
+	}
+}

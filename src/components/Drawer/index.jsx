@@ -1,16 +1,29 @@
+import { useContext, useState } from 'react';
+import { AppContext } from '../../App';
+import DrawerInfo from '../DrawerInfo';
 import styles from './Drawer.module.scss';
 
-const Drawer = ({ closeCart, items = [], removeFromCart, total }) => {
+const Drawer = ({ items = [], removeFromCart, opened }) => {
+	const { totalPrice, cartItems, setCartOpened, setCartItems, setOrders } =
+		useContext(AppContext);
+
+	const [isOrderCreated, setIsOrderCreated] = useState(false);
 	const countClass = styles.count;
 
+	const createOrder = () => {
+		setIsOrderCreated(true);
+		setOrders(prev => [...prev, cartItems].flat());
+		setCartItems([]);
+	};
+
 	return (
-		<div className={styles.overlay}>
+		<div className={`${styles.overlay} ${opened ? styles.opened : ''}`}>
 			<div className={styles.drawer}>
 				<div className={styles.header}>
 					<h2>Корзина</h2>
 					<div
 						className={styles.close}
-						onClick={closeCart}
+						onClick={() => setCartOpened(false)}
 					/>
 				</div>
 				<div className={styles.cartItems}>
@@ -32,57 +45,26 @@ const Drawer = ({ closeCart, items = [], removeFromCart, total }) => {
 										<span>{item.price} руб.</span>
 									</div>
 									<div
-										onClick={() => removeFromCart(item.imageUrl)}
+										onClick={() => removeFromCart(item.id)}
 										className={styles.action}
 									></div>
 								</div>
 							))}
 						</div>
 					) : (
-						<div className={styles.cartEmpty}>
-							<div className={styles.emptyImage}>
-								<img
-									src='/img/cart-empty.jpg'
-									width={120}
-									height={120}
-									alt='Empty'
-								/>
-							</div>
-							<div className={styles.emptyTitle}>Корзина пустая</div>
-							<div className={styles.emptyText}>
-								Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
-							</div>
-							<div className={styles.emptyAction}>
-								<button
-									onClick={closeCart}
-									className={styles.backBtn}
-								>
-									<svg
-										width='16'
-										height='14'
-										viewBox='0 0 16 14'
-										fill='none'
-										xmlns='http://www.w3.org/2000/svg'
-									>
-										<path
-											d='M1 7H14.7143'
-											stroke='white'
-											strokeWidth='2'
-											strokeLinecap='round'
-											strokeLinejoin='round'
-										/>
-										<path
-											d='M8.71436 1L14.7144 7L8.71436 13'
-											stroke='white'
-											strokeWidth='2'
-											strokeLinecap='round'
-											strokeLinejoin='round'
-										/>
-									</svg>{' '}
-									Вернуться назад
-								</button>
-							</div>
-						</div>
+						<DrawerInfo
+							title={isOrderCreated ? 'Заказ оформлен!' : 'Корзина пустая'}
+							description={
+								isOrderCreated
+									? 'Ваш заказ скоро будет передан курьерской доставке'
+									: 'Добавьте хотя-бы одну пару кроссовок, чтобы сделать заказ'
+							}
+							image={
+								isOrderCreated
+									? './img/cart-complete.svg'
+									: './img/cart-empty.svg'
+							}
+						/>
 					)}
 				</div>
 				{items.length > 0 ? (
@@ -90,16 +72,17 @@ const Drawer = ({ closeCart, items = [], removeFromCart, total }) => {
 						<div className={countClass + ' ' + styles.sum}>
 							<div>Итого:</div>
 							<div></div>
-							<div>{total} руб.</div>
+							<div>{totalPrice} руб.</div>
 						</div>
 						<div className={countClass + ' ' + styles.tax}>
 							<div>Налог 5%:</div>
 							<div></div>
-							<div>{total / 20} руб.</div>
+							<div>{totalPrice / 20} руб.</div>
 						</div>
 						<div className={styles.action}>
 							<button
 								type='button'
+								onClick={() => createOrder()}
 								className={styles.orderBtn}
 							>
 								Оформить заказ
