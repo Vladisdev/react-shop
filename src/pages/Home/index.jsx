@@ -41,13 +41,13 @@ const Home = ({
 					></input>
 					<img
 						className='search pos-a'
-						src='/img/search.svg'
+						src='img/search.svg'
 						alt='Search'
 					/>
 					{searchValue && (
 						<img
 							className='cross pos-a'
-							src='/img/cross.svg'
+							src='img/cross.svg'
 							alt='Clear'
 							onClick={clearSearchInput}
 						/>

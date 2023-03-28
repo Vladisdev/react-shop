@@ -60,9 +60,7 @@ const Drawer = ({ items = [], removeFromCart, opened }) => {
 									: 'Добавьте хотя-бы одну пару кроссовок, чтобы сделать заказ'
 							}
 							image={
-								isOrderCreated
-									? './img/cart-complete.svg'
-									: './img/cart-empty.svg'
+								isOrderCreated ? 'img/cart-complete.svg' : 'img/cart-empty.svg'
 							}
 						/>
 					)}

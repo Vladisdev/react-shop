@@ -56,7 +56,7 @@ const Favorites = ({ addToFavorites, addToCart }) => {
 				</>
 			) : (
 				<PagesInfo
-					image='./img/emoji-tears.svg'
+					image='img/emoji-tears.svg'
 					title='Закладок нет :('
 					text={<span>Вы ничего не добавляли в закладки</span>}
 				/>

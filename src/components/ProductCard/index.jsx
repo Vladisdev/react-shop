@@ -99,7 +99,7 @@ const ProductCard = ({
 								onClick={onCLickPlus}
 							>
 								<img
-									src={isItemInCart(id) ? '/img/check.svg' : '/img/plus.svg'}
+									src={isItemInCart(id) ? 'img/check.svg' : 'img/plus.svg'}
 									alt='Plus'
 								/>
 							</div>

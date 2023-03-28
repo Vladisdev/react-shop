@@ -58,7 +58,7 @@ const Orders = ({ addToFavorites, addToCart }) => {
 				</>
 			) : (
 				<PagesInfo
-					image='./img/emoji-sad.svg'
+					image='img/emoji-sad.svg'
 					title='У вас нет заказов'
 					text={
 						<>

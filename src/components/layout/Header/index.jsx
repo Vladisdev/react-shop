@@ -14,7 +14,7 @@ const Header = () => {
 						className={styles.img}
 						width={40}
 						height={40}
-						src='/img/logo.png'
+						src='img/logo.png'
 						alt='Logo'
 					/>
 					<div className={styles.headerInfo}>
@@ -32,7 +32,7 @@ const Header = () => {
 						width={18}
 						height={18}
 						className='mr-10'
-						src='/img/cart.svg'
+						src='img/cart.svg'
 						alt='Cart'
 					/>
 					<span className='mr-30'>{totalPrice} руб.</span>
@@ -42,7 +42,7 @@ const Header = () => {
 						<img
 							width={20}
 							height={20}
-							src='/img/favorite.svg'
+							src='img/favorite.svg'
 							alt='Favorite'
 							className='favorite mr-30'
 						/>
@@ -54,7 +54,7 @@ const Header = () => {
 							width={20}
 							height={20}
 							className='user'
-							src='/img/user.svg'
+							src='img/user.svg'
 							alt='User'
 						/>
 					</Link>
