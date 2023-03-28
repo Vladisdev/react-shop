@@ -8,7 +8,7 @@ const Header = () => {
 
 	return (
 		<header className={styles.header}>
-			<Link to={'/'}>
+			<Link to={''}>
 				<div className={styles.headerLeft}>
 					<img
 						className={styles.img}
@@ -38,7 +38,7 @@ const Header = () => {
 					<span className='mr-30'>{totalPrice} руб.</span>
 				</div>
 				<div>
-					<Link to={'/favorites'}>
+					<Link to={'favorites'}>
 						<img
 							width={20}
 							height={20}
