@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './PagesInfo.module.scss';
 
-const PagesInfo = ({ image, title, text, hideActions }) => {
+const PagesInfo = ({ image, title, text }) => {
 	return (
 		<div className={styles.infoBlock}>
 			<div className={styles.emoji}>
@@ -12,7 +12,7 @@ const PagesInfo = ({ image, title, text, hideActions }) => {
 			</div>
 			<div className={styles.title}>{title}</div>
 			<div className={styles.text}>{text}</div>
-			<Link to={'/'}>
+			<Link to={''}>
 				<div className={styles.actionBlock}>
 					<button className={styles.btn}>
 						{' '}

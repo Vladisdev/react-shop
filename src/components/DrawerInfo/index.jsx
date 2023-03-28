@@ -18,7 +18,7 @@ const DrawerInfo = ({ image, title, description }) => {
 			</div>
 			<div className={styles.infoTitle}>{title}</div>
 			<div className={styles.infoText}>{description}</div>
-			<Link to={'/'}>
+			<Link to={''}>
 				<div className={styles.infoAction}>
 					<button
 						onClick={() => setCartOpened(false)}
