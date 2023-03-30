@@ -12,7 +12,7 @@ const PagesInfo = ({ image, title, text }) => {
 			</div>
 			<div className={styles.title}>{title}</div>
 			<div className={styles.text}>{text}</div>
-			<Link to={''}>
+			<Link to={'/'}>
 				<div className={styles.actionBlock}>
 					<button className={styles.btn}>
 						{' '}

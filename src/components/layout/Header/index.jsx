@@ -8,13 +8,13 @@ const Header = () => {
 
 	return (
 		<header className={styles.header}>
-			<Link to={''}>
+			<Link to={'/'}>
 				<div className={styles.headerLeft}>
 					<img
 						className={styles.img}
 						width={40}
 						height={40}
-						src='img/logo.png'
+						src='./img/logo.png'
 						alt='Logo'
 					/>
 					<div className={styles.headerInfo}>
